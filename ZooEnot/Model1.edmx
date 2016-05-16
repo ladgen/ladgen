@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="ItemSet" EntityType="Model1.Store.ItemSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeSet" EntityType="Model1.Store.TypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Poz2Set1" EntityType="Model1.Store.Poz2Set1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BillSet" EntityType="Model1.Store.BillSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientSet" EntityType="Model1.Store.ClientSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ShopSet" EntityType="Model1.Store.ShopSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StockSet" EntityType="Model1.Store.StockSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InvoiceSet" EntityType="Model1.Store.InvoiceSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SellerSet" EntityType="Model1.Store.SellerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Poz1Set" EntityType="Model1.Store.Poz1Set" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TypeItem" Association="Model1.Store.TypeItem">
+      <End Role="Type" EntitySet="TypeSet" />
+      <End Role="Item" EntitySet="ItemSet" />
+    </AssociationSet>
+    <AssociationSet Name="ItemPoz2" Association="Model1.Store.ItemPoz2">
+      <End Role="Item" EntitySet="ItemSet" />
+      <End Role="Poz2" EntitySet="Poz2Set1" />
+    </AssociationSet>
+    <AssociationSet Name="ItemPoz1" Association="Model1.Store.ItemPoz1">
+      <End Role="Item" EntitySet="ItemSet" />
+      <End Role="Poz1" EntitySet="Poz1Set" />
+    </AssociationSet>
+    <AssociationSet Name="BillPoz2" Association="Model1.Store.BillPoz2">
+      <End Role="Bill" EntitySet="BillSet" />
+      <End Role="Poz2" EntitySet="Poz2Set1" />
+    </AssociationSet>
+    <AssociationSet Name="InvoicePoz1" Association="Model1.Store.InvoicePoz1">
+      <End Role="Invoice" EntitySet="InvoiceSet" />
+      <End Role="Poz1" EntitySet="Poz1Set" />
+    </AssociationSet>
+    <AssociationSet Name="ShopBill" Association="Model1.Store.ShopBill">
+      <End Role="Shop" EntitySet="ShopSet" />
+      <End Role="Bill" EntitySet="BillSet" />
+    </AssociationSet>
+    <AssociationSet Name="ShopInvoice" Association="Model1.Store.ShopInvoice">
+      <End Role="Shop" EntitySet="ShopSet" />
+      <End Role="Invoice" EntitySet="InvoiceSet" />
+    </AssociationSet>
+    <AssociationSet Name="ClientBill" Association="Model1.Store.ClientBill">
+      <End Role="Client" EntitySet="ClientSet" />
+      <End Role="Bill" EntitySet="BillSet" />
+    </AssociationSet>
+    <AssociationSet Name="SellerInvoice" Association="Model1.Store.SellerInvoice">
+      <End Role="Seller" EntitySet="SellerSet" />
+      <End Role="Invoice" EntitySet="InvoiceSet" />
+    </AssociationSet>
+    <AssociationSet Name="ShopStock" Association="Model1.Store.ShopStock">
+      <End Role="Shop" EntitySet="ShopSet" />
+      <End Role="Stock" EntitySet="StockSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ItemSet">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeSet">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Poz2Set1">
+    <Key>
+      <PropertyRef Name="Poz2Id" />
+    </Key>
+    <Property Name="Poz2Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" />
+    <Property Name="BilId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BillSet">
+    <Key>
+      <PropertyRef Name="BillId" />
+    </Key>
+    <Property Name="BillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="ShopId" Type="int" Nullable="false" />
+    <Property Name="Poz2Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientSet">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShopSet">
+    <Key>
+      <PropertyRef Name="ShopId" />
+    </Key>
+    <Property Name="ShopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockSet">
+    <Key>
+      <PropertyRef Name="ShopId" />
+    </Key>
+    <Property Name="ShopId" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="MinCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoiceSet">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SellerId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ShopId" Type="int" Nullable="false" />
+    <Property Name="Poz1Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SellerSet">
+    <Key>
+      <PropertyRef Name="SellerId" />
+    </Key>
+    <Property Name="SellerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameCompany" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="INN" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Poz1Set">
+    <Key>
+      <PropertyRef Name="Poz1Id" />
+    </Key>
+    <Property Name="Poz1Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" />
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="TypeItem">
+    <End Role="Type" Type="Model1.Store.TypeSet" Multiplicity="1" />
+    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="TypeId" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ItemPoz2">
+    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="1" />
+    <End Role="Poz2" Type="Model1.Store.Poz2Set1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Poz2">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ItemPoz1">
+    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="1" />
+    <End Role="Poz1" Type="Model1.Store.Poz1Set" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Poz1">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BillPoz2">
+    <End Role="Bill" Type="Model1.Store.BillSet" Multiplicity="1" />
+    <End Role="Poz2" Type="Model1.Store.Poz2Set1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="BillId" />
+      </Principal>
+      <Dependent Role="Poz2">
+        <PropertyRef Name="BilId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoicePoz1">
+    <End Role="Invoice" Type="Model1.Store.InvoiceSet" Multiplicity="1" />
+    <End Role="Poz1" Type="Model1.Store.Poz1Set" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceId" />
+      </Principal>
+      <Dependent Role="Poz1">
+        <PropertyRef Name="InvoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShopBill">
+    <End Role="Shop" Type="Model1.Store.ShopSet" Multiplicity="1" />
+    <End Role="Bill" Type="Model1.Store.BillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ShopId" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShopInvoice">
+    <End Role="Shop" Type="Model1.Store.ShopSet" Multiplicity="1" />
+    <End Role="Invoice" Type="Model1.Store.InvoiceSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ShopId" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientBill">
+    <End Role="Client" Type="Model1.Store.ClientSet" Multiplicity="1" />
+    <End Role="Bill" Type="Model1.Store.BillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SellerInvoice">
+    <End Role="Seller" Type="Model1.Store.SellerSet" Multiplicity="1" />
+    <End Role="Invoice" Type="Model1.Store.InvoiceSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="SellerId" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShopStock">
+    <End Role="Shop" Type="Model1.Store.ShopSet" Multiplicity="0..1" />
+    <End Role="Stock" Type="Model1.Store.StockSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="ShopId" />
+      </Principal>
+      <Dependent Role="Shop">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ItemSet" EntityType="Model1.Item" />
+          <EntitySet Name="TypeSet" EntityType="Model1.Type" />
+          <EntitySet Name="Poz2Set1" EntityType="Model1.Poz2" />
+          <EntitySet Name="BillSet" EntityType="Model1.Bill" />
+          <EntitySet Name="ClientSet" EntityType="Model1.Client" />
+          <EntitySet Name="ShopSet" EntityType="Model1.Shop" />
+          <EntitySet Name="StockSet" EntityType="Model1.Stock" />
+          <EntitySet Name="InvoiceSet" EntityType="Model1.Invoice" />
+          <EntitySet Name="SellerSet" EntityType="Model1.Seller" />
+          <EntitySet Name="Poz1Set" EntityType="Model1.Poz1" />
+          <AssociationSet Name="TypeItem" Association="Model1.TypeItem">
+            <End Role="Type" EntitySet="TypeSet" />
+            <End Role="Item" EntitySet="ItemSet" />
+          </AssociationSet>
+          <AssociationSet Name="ItemPoz2" Association="Model1.ItemPoz2">
+            <End Role="Item" EntitySet="ItemSet" />
+            <End Role="Poz2" EntitySet="Poz2Set1" />
+          </AssociationSet>
+          <AssociationSet Name="ItemPoz1" Association="Model1.ItemPoz1">
+            <End Role="Item" EntitySet="ItemSet" />
+            <End Role="Poz1" EntitySet="Poz1Set" />
+          </AssociationSet>
+          <AssociationSet Name="BillPoz2" Association="Model1.BillPoz2">
+            <End Role="Bill" EntitySet="BillSet" />
+            <End Role="Poz2" EntitySet="Poz2Set1" />
+          </AssociationSet>
+          <AssociationSet Name="InvoicePoz1" Association="Model1.InvoicePoz1">
+            <End Role="Invoice" EntitySet="InvoiceSet" />
+            <End Role="Poz1" EntitySet="Poz1Set" />
+          </AssociationSet>
+          <AssociationSet Name="ShopBill" Association="Model1.ShopBill">
+            <End Role="Shop" EntitySet="ShopSet" />
+            <End Role="Bill" EntitySet="BillSet" />
+          </AssociationSet>
+          <AssociationSet Name="ShopInvoice" Association="Model1.ShopInvoice">
+            <End Role="Shop" EntitySet="ShopSet" />
+            <End Role="Invoice" EntitySet="InvoiceSet" />
+          </AssociationSet>
+          <AssociationSet Name="ClientBill" Association="Model1.ClientBill">
+            <End Role="Client" EntitySet="ClientSet" />
+            <End Role="Bill" EntitySet="BillSet" />
+          </AssociationSet>
+          <AssociationSet Name="SellerInvoice" Association="Model1.SellerInvoice">
+            <End Role="Seller" EntitySet="SellerSet" />
+            <End Role="Invoice" EntitySet="InvoiceSet" />
+          </AssociationSet>
+          <AssociationSet Name="ShopStock" Association="Model1.ShopStock">
+            <End Role="Shop" EntitySet="ShopSet" />
+            <End Role="Stock" EntitySet="StockSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Type" Relationship="Model1.TypeItem" FromRole="Item" ToRole="Type" />
+          <NavigationProperty Name="Poz2" Relationship="Model1.ItemPoz2" FromRole="Item" ToRole="Poz2" />
+          <NavigationProperty Name="Poz1" Relationship="Model1.ItemPoz1" FromRole="Item" ToRole="Poz1" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Model1.TypeItem" FromRole="Type" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Poz2">
+          <Key>
+            <PropertyRef Name="Poz2Id" />
+          </Key>
+          <Property Name="Poz2Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="BilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Model1.ItemPoz2" FromRole="Poz2" ToRole="Item" />
+          <NavigationProperty Name="Bill" Relationship="Model1.BillPoz2" FromRole="Poz2" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="BillId" />
+          </Key>
+          <Property Name="BillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="Poz2Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Poz2" Relationship="Model1.BillPoz2" FromRole="Bill" ToRole="Poz2" />
+          <NavigationProperty Name="Shop" Relationship="Model1.ShopBill" FromRole="Bill" ToRole="Shop" />
+          <NavigationProperty Name="Client" Relationship="Model1.ClientBill" FromRole="Bill" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Model1.ClientBill" FromRole="Client" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ShopId" />
+          </Key>
+          <Property Name="ShopId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Model1.ShopBill" FromRole="Shop" ToRole="Bill" />
+          <NavigationProperty Name="Invoice" Relationship="Model1.ShopInvoice" FromRole="Shop" ToRole="Invoice" />
+          <NavigationProperty Name="Stock" Relationship="Model1.ShopStock" FromRole="Shop" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="ShopId" />
+          </Key>
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="MinCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="Model1.ShopStock" FromRole="Stock" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="Poz1Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Poz1" Relationship="Model1.InvoicePoz1" FromRole="Invoice" ToRole="Poz1" />
+          <NavigationProperty Name="Shop" Relationship="Model1.ShopInvoice" FromRole="Invoice" ToRole="Shop" />
+          <NavigationProperty Name="Seller" Relationship="Model1.SellerInvoice" FromRole="Invoice" ToRole="Seller" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="SellerId" />
+          </Key>
+          <Property Name="SellerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCompany" Type="String" Nullable="false" />
+          <Property Name="INN" Type="String" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Model1.SellerInvoice" FromRole="Seller" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Poz1">
+          <Key>
+            <PropertyRef Name="Poz1Id" />
+          </Key>
+          <Property Name="Poz1Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Model1.ItemPoz1" FromRole="Poz1" ToRole="Item" />
+          <NavigationProperty Name="Invoice" Relationship="Model1.InvoicePoz1" FromRole="Poz1" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="TypeItem">
+          <End Type="Model1.Type" Role="Type" Multiplicity="1" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemPoz2">
+          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
+          <End Type="Model1.Poz2" Role="Poz2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Poz2">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemPoz1">
+          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
+          <End Type="Model1.Poz1" Role="Poz1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Poz1">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BillPoz2">
+          <End Type="Model1.Bill" Role="Bill" Multiplicity="1" />
+          <End Type="Model1.Poz2" Role="Poz2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="BillId" />
+            </Principal>
+            <Dependent Role="Poz2">
+              <PropertyRef Name="BilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InvoicePoz1">
+          <End Type="Model1.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="Model1.Poz1" Role="Poz1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Poz1">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ShopBill">
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="Model1.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ShopInvoice">
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="Model1.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientBill">
+          <End Type="Model1.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model1.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SellerInvoice">
+          <End Type="Model1.Seller" Role="Seller" Multiplicity="1" />
+          <End Type="Model1.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="SellerId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ShopStock">
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="Model1.Stock" Role="Stock" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="ItemSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Item)">
+        <MappingFragment StoreEntitySet="ItemSet">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Type)">
+        <MappingFragment StoreEntitySet="TypeSet">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Poz2Set1">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Poz2)">
+        <MappingFragment StoreEntitySet="Poz2Set1">
+          <ScalarProperty Name="Poz2Id" ColumnName="Poz2Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="BilId" ColumnName="BilId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Bill)">
+        <MappingFragment StoreEntitySet="BillSet">
+          <ScalarProperty Name="BillId" ColumnName="BillId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Poz2Id" ColumnName="Poz2Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Client)">
+        <MappingFragment StoreEntitySet="ClientSet">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Shop)">
+        <MappingFragment StoreEntitySet="ShopSet">
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Stock)">
+        <MappingFragment StoreEntitySet="StockSet">
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="MinCount" ColumnName="MinCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Invoice)">
+        <MappingFragment StoreEntitySet="InvoiceSet">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Poz1Id" ColumnName="Poz1Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Seller)">
+        <MappingFragment StoreEntitySet="SellerSet">
+          <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+          <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Poz1Set">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Poz1)">
+        <MappingFragment StoreEntitySet="Poz1Set">
+          <ScalarProperty Name="Poz1Id" ColumnName="Poz1Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

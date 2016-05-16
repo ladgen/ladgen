@@ -1,0 +1,2 @@
+D:\Диплом\ZooEnot\ZooEnot\bin\Debug\ZooEnot.exe.config
+D:\Диплом2\ZooEnot\bin\Debug\ZooEnot.exe.config
